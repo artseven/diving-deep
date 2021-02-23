@@ -12,7 +12,7 @@ const app = (props) => {
       { name: "Stephanie", age: 26 },
     ],
     otherState: "some other value",
-    showPersons: false,
+    showPersons: true,
   });
 
   const [usernameState, setUsernameState] = useState({
@@ -49,7 +49,10 @@ const app = (props) => {
   /**
    *
    */
-  const togglePersonsHandler = () => {};
+  const togglePersonsHandler = () => {
+    const doesShow = personsState.showPersons;
+    setPersonsState({ showPersons: !doesShow });
+  };
 
   const style = {
     backgroundColor: "white",
@@ -68,9 +71,9 @@ const app = (props) => {
 
       <p>This is really working!</p>
       <button style={style} onClick={togglePersonsHandler}>
-        Switch Name
+        Toggle Persons
       </button>
-      { personsState.showPersons ?
+      {personsState.showPersons ? (
         <div>
           <Person
             name={personsState.persons[0].name}
@@ -88,8 +91,9 @@ const app = (props) => {
           />
           <Person name="Art" age="28" />
         </div>
-        : "Nothing to show"
-      }
+      ) : (
+        <p>Ooops...we hit the road bump</p>
+      )}
     </div>
   );
   // return React.createElement(
