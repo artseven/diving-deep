@@ -37,7 +37,9 @@ const app = (props) => {
   };
 
   const deletePersonHandler = (personIndex) => {
-    const persons = personsState.persons;
+    // same result of getting a deep copy instead of pointer
+    // const persons = personsState.persons.slice();
+    const persons = [...personsState.persons];
     persons.splice(personIndex, 1);
     setPersonsState({
       persons: persons
