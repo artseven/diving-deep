@@ -67,21 +67,9 @@ const app = (props) => {
   if (personsState.showPersons) {
     persons = (
       <div>
-        <Person
-          name={personsState.persons[0].name}
-          age={personsState.persons[0].age}
-          changed={nameChangedHandler}
-        />
-        <Person
-          name={personsState.persons[1].name}
-          age={personsState.persons[1].age}
-          click={switchNameHandler.bind(this, "Max!")}
-        />
-        <Person
-          name={personsState.persons[2].name}
-          age={personsState.persons[2].age}
-        />
-        <Person name="Art" age="28" />
+        {personsState.persons.map((person) => {
+          return <Person name={person.name} age={person.age} />;
+        })}
       </div>
     );
   } else {
