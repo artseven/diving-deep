@@ -84,6 +84,12 @@ const app = (props) => {
         <Person name="Art" age="28" />
       </div>
     );
+  } else {
+    persons = (
+      <div>
+        <p>Ooops...we hit the road bump</p>
+      </div>
+    );
   }
   return (
     <div className="App">
@@ -96,8 +102,7 @@ const app = (props) => {
       <button style={style} onClick={togglePersonsHandler}>
         Toggle Persons
       </button>
-
-      {/* <p>Ooops...we hit the road bump</p> */}
+      {persons}
     </div>
   );
   // return React.createElement(
