@@ -26,16 +26,6 @@ const app = (props) => {
     });
   };
 
-  const switchNameHandler = (newName) => {
-    setPersonsState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: "Art", age: 25 },
-        { name: "Stephanie", age: 29 },
-      ],
-    });
-  };
-
   const nameChangedHandler = (event) => {
     setPersonsState({
       persons: [
@@ -46,9 +36,14 @@ const app = (props) => {
     });
   };
 
-  /**
-   *
-   */
+  const deletePersonHandler = (personIndex) => {
+    const persons = personsState.persons;
+    persons.splice(personIndex, 1);
+    setPersonsState({
+      persons: persons
+    });
+  };
+
   const togglePersonsHandler = () => {
     const doesShow = personsState.showPersons;
     setPersonsState({ showPersons: !doesShow });
@@ -67,8 +62,15 @@ const app = (props) => {
   if (personsState.showPersons) {
     persons = (
       <div>
-        {personsState.persons.map((person) => {
-          return <Person name={person.name} age={person.age} />;
+        {personsState.persons.map((person, index) => {
+          return (
+            <Person
+              key={index}
+              click={() => deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+            />
+          );
         })}
       </div>
     );
