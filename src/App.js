@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Person from "./Person/Person";
 import UserInput from "./UserInput/UserInput";
-import UserOutput from './UserOutput/UserOutput';
+import UserOutput from "./UserOutput/UserOutput";
 
 const app = (props) => {
   const [personsState, setPersonsState] = useState({
@@ -11,20 +11,20 @@ const app = (props) => {
       { name: "Manu", age: 29 },
       { name: "Stephanie", age: 26 },
     ],
+    otherState: "some other value",
+    showPersons: false,
   });
 
   const [usernameState, setUsernameState] = useState({
-    username: 'artseven'
-  })
-
+    username: "artseven",
+  });
 
   const changeUsernameHandler = (newUsername) => {
-    console.log('Newusername: ', newUsername)
+    console.log("Newusername: ", newUsername);
     setUsernameState({
-      username: newUsername
-    })
-  }
-
+      username: newUsername,
+    });
+  };
 
   const switchNameHandler = (newName) => {
     setPersonsState({
@@ -32,7 +32,7 @@ const app = (props) => {
         { name: newName, age: 28 },
         { name: "Art", age: 25 },
         { name: "Stephanie", age: 29 },
-      ]
+      ],
     });
   };
 
@@ -46,42 +46,50 @@ const app = (props) => {
     });
   };
 
+  /**
+   *
+   */
+  const togglePersonsHandler = () => {};
+
   const style = {
     backgroundColor: "white",
     font: "inherit",
     border: "1px solid blue",
     padding: "8px",
-    cursor: 'pointer'
+    cursor: "pointer",
   };
 
   return (
     <div className="App">
       <h1>Hi, I'm a React App</h1>
-      <UserInput userName={usernameState.username} changed={(e) => changeUsernameHandler(e.target.value)}/>
+      {/* <UserInput userName={usernameState.username} changed={(e) => changeUsernameHandler(e.target.value)}/>
       <UserOutput userName={usernameState.username}/>
-      <UserOutput userName={usernameState.username}/>
+      <UserOutput userName={usernameState.username}/> */}
 
       <p>This is really working!</p>
-      <button 
-        style={style}
-        onClick={() => switchNameHandler("Maximilian!!")}>
+      <button style={style} onClick={togglePersonsHandler}>
         Switch Name
       </button>
-      <Person
-        name={personsState.persons[0].name}
-        age={personsState.persons[0].age}
-        changed={nameChangedHandler}
-      />
-      <Person
-        name={personsState.persons[1].name}
-        age={personsState.persons[1].age}
-        click={switchNameHandler.bind(this, "Max!")}
-      />
-      <Person
-        name={personsState.persons[2].name}
-        age={personsState.persons[2].age}
-      />
-      <Person name="Art" age="28" />
+      { personsState.showPersons ?
+        <div>
+          <Person
+            name={personsState.persons[0].name}
+            age={personsState.persons[0].age}
+            changed={nameChangedHandler}
+          />
+          <Person
+            name={personsState.persons[1].name}
+            age={personsState.persons[1].age}
+            click={switchNameHandler.bind(this, "Max!")}
+          />
+          <Person
+            name={personsState.persons[2].name}
+            age={personsState.persons[2].age}
+          />
+          <Person name="Art" age="28" />
+        </div>
+        : "Nothing to show"
+      }
     </div>
   );
   // return React.createElement(
