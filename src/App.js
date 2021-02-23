@@ -62,6 +62,29 @@ const app = (props) => {
     cursor: "pointer",
   };
 
+  let persons = null;
+
+  if (personsState.showPersons) {
+    persons = (
+      <div>
+        <Person
+          name={personsState.persons[0].name}
+          age={personsState.persons[0].age}
+          changed={nameChangedHandler}
+        />
+        <Person
+          name={personsState.persons[1].name}
+          age={personsState.persons[1].age}
+          click={switchNameHandler.bind(this, "Max!")}
+        />
+        <Person
+          name={personsState.persons[2].name}
+          age={personsState.persons[2].age}
+        />
+        <Person name="Art" age="28" />
+      </div>
+    );
+  }
   return (
     <div className="App">
       <h1>Hi, I'm a React App</h1>
@@ -73,27 +96,8 @@ const app = (props) => {
       <button style={style} onClick={togglePersonsHandler}>
         Toggle Persons
       </button>
-      {personsState.showPersons ? (
-        <div>
-          <Person
-            name={personsState.persons[0].name}
-            age={personsState.persons[0].age}
-            changed={nameChangedHandler}
-          />
-          <Person
-            name={personsState.persons[1].name}
-            age={personsState.persons[1].age}
-            click={switchNameHandler.bind(this, "Max!")}
-          />
-          <Person
-            name={personsState.persons[2].name}
-            age={personsState.persons[2].age}
-          />
-          <Person name="Art" age="28" />
-        </div>
-      ) : (
-        <p>Ooops...we hit the road bump</p>
-      )}
+
+      {/* <p>Ooops...we hit the road bump</p> */}
     </div>
   );
   // return React.createElement(
