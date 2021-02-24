@@ -86,10 +86,6 @@ const app = (props) => {
   return (
     <div className="App">
       <h1>Hi, I'm a React App</h1>
-      {/* <UserInput userName={usernameState.username} changed={(e) => changeUsernameHandler(e.target.value)}/>
-      <UserOutput userName={usernameState.username}/>
-      <UserOutput userName={usernameState.username}/> */}
-
       <button style={style} onClick={togglePersonsHandler}>
         Toggle Persons
       </button>
