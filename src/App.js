@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import UserInput from "./UserInput/UserInput";
-import UserOutput from "./UserOutput/UserOutput";
 
 const app = (props) => {
   const [personsState, setPersonsState] = useState({
     persons: [
-      { name: "Max", age: 28 },
-      { name: "Manu", age: 29 },
-      { name: "Stephanie", age: 26 },
+      { id: "asfd12", name: "Max", age: 28 },
+      { id: "sdfgsdf", name: "Manu", age: 29 },
+      { id: "sdfsdfa12", name: "Stephanie", age: 26 },
     ],
     otherState: "some other value",
     showPersons: true,
@@ -26,7 +24,7 @@ const app = (props) => {
     });
   };
 
-  const nameChangedHandler = (event) => {
+  const nameChangedHandler = (event, id) => {
     setPersonsState({
       persons: [
         { name: "Max", age: 28 },
@@ -39,10 +37,11 @@ const app = (props) => {
   const deletePersonHandler = (personIndex) => {
     // same result of getting a deep copy instead of pointer
     // const persons = personsState.persons.slice();
+    console.log("Removing: ", personsState.persons[personIndex]);
     const persons = [...personsState.persons];
     persons.splice(personIndex, 1);
     setPersonsState({
-      persons: persons
+      persons: persons,
     });
   };
 
@@ -67,10 +66,11 @@ const app = (props) => {
         {personsState.persons.map((person, index) => {
           return (
             <Person
-              key={index}
+              key={person.id}
               click={() => deletePersonHandler(index)}
               name={person.name}
               age={person.age}
+              changed={(event) => nameChangedHandler(event, person.id)}
             />
           );
         })}
@@ -90,7 +90,6 @@ const app = (props) => {
       <UserOutput userName={usernameState.username}/>
       <UserOutput userName={usernameState.username}/> */}
 
-      <p>This is really working!</p>
       <button style={style} onClick={togglePersonsHandler}>
         Toggle Persons
       </button>
