@@ -9,8 +9,7 @@ const app = (props) => {
       { id: "sdfgsdf", name: "Manu", age: 29 },
       { id: "sdfsdfa12", name: "Stephanie", age: 26 },
     ],
-    otherState: "some other value",
-    showPersons: true,
+    showPersons: false,
   });
 
   const [usernameState, setUsernameState] = useState({
@@ -47,11 +46,15 @@ const app = (props) => {
 
   const togglePersonsHandler = () => {
     const doesShow = personsState.showPersons;
-    setPersonsState({ showPersons: !doesShow });
+    setPersonsState({
+      showPersons: !doesShow,
+      persons: [...personsState.persons],
+    });
   };
 
   const style = {
-    backgroundColor: "white",
+    backgroundColor: "green",
+    color: "white",
     font: "inherit",
     border: "1px solid blue",
     padding: "8px",
@@ -76,6 +79,7 @@ const app = (props) => {
         })}
       </div>
     );
+    style.backgroundColor = "red";
   } else {
     persons = (
       <div>
