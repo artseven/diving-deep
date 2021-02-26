@@ -55,6 +55,7 @@ const app = (props) => {
   const style = {};
 
   let persons = null;
+  let btnClass = '';
 
   if (personsState.showPersons) {
     persons = (
@@ -77,6 +78,8 @@ const app = (props) => {
       backgroundColor: "salmon",
       color: "black",
     };
+
+    btnClass = classes.Red
   }
   const assignedClasses = [];
   if (personsState.persons.length <= 2) {
@@ -90,7 +93,7 @@ const app = (props) => {
     <div className={classes.App}>
       <h1>Hi, I'm a React App</h1>
       <p className={assignedClasses.join(" ")}>This is really working!</p>
-      <button className={classes.button} onClick={togglePersonsHandler}>Toggle Persons</button>
+      <button className={btnClass} onClick={togglePersonsHandler}>Toggle Persons</button>
       {persons}
     </div>
   );
