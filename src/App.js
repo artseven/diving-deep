@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from "./App.css";
 import Person from "./Person/Person";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 const app = (props) => {
   const [personsState, setPersonsState] = useState({
@@ -55,20 +56,22 @@ const app = (props) => {
   const style = {};
 
   let persons = null;
-  let btnClass = '';
+  let btnClass = "";
 
   if (personsState.showPersons) {
     persons = (
       <div>
         {personsState.persons.map((person, index) => {
           return (
-            <Person
-              key={person.id}
-              click={() => deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              changed={(event) => nameChangedHandler(event, person.id)}
-            />
+            <ErrorBoundary>
+              <Person
+                key={person.id}
+                click={() => deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+                changed={(event) => nameChangedHandler(event, person.id)}
+              />
+            </ErrorBoundary>
           );
         })}
       </div>
@@ -79,7 +82,7 @@ const app = (props) => {
       color: "black",
     };
 
-    btnClass = classes.Red
+    btnClass = classes.Red;
   }
   const assignedClasses = [];
   if (personsState.persons.length <= 2) {
@@ -93,7 +96,9 @@ const app = (props) => {
     <div className={classes.App}>
       <h1>Hi, I'm a React App</h1>
       <p className={assignedClasses.join(" ")}>This is really working!</p>
-      <button className={btnClass} onClick={togglePersonsHandler}>Toggle Persons</button>
+      <button className={btnClass} onClick={togglePersonsHandler}>
+        Toggle Persons
+      </button>
       {persons}
     </div>
   );
