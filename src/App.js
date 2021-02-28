@@ -63,9 +63,8 @@ const app = (props) => {
       <div>
         {personsState.persons.map((person, index) => {
           return (
-            <ErrorBoundary>
+            <ErrorBoundary key={person.id}>
               <Person
-                key={person.id}
                 click={() => deletePersonHandler(index)}
                 name={person.name}
                 age={person.age}
