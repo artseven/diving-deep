@@ -81,11 +81,11 @@ import Cockpit from "../components/Cockpit/Cockpit";
 //       {persons}
 //     </div>
 //   );
-  // return React.createElement(
-  //   "div",
-  //   {className: 'App'},
-  //   React.createElement("h1", null, "Does this work now")
-  // );
+// return React.createElement(
+//   "div",
+//   {className: 'App'},
+//   React.createElement("h1", null, "Does this work now")
+// );
 // };
 
 // export default app;
@@ -93,36 +93,44 @@ import Cockpit from "../components/Cockpit/Cockpit";
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log('[App.js] constructor');
+    console.log("[App.js] constructor");
     this.state = {
       persons: [],
-      otherState: 'blah',
-      showPersons: false
-    }
+      otherState: "blah",
+      showPersons: false,
+    };
   }
 
-  static getDerivedStateFromProps(props,state) {
-    console.log('[App.js] getDerivedStateFromProps', props);
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
     return state;
   }
 
   componentDidMount() {
-    console.log('[App.js] componentDidMount');
+    console.log("[App.js] componentDidMount");
   }
   //unsafe legacy lifecycle hook, will be removed
   // componentWillMount() {
-  //   console.log('[App.js] componentWillMount'); 
+  //   console.log('[App.js] componentWillMount');
   // }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js] shouldComponentUpdate");
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log("[App.js] componentDidUpdate");
+  }
   render() {
-    console.log('[App.js] render() method');
+    console.log("[App.js] render() method");
 
-    return(
-      <div>Class component
-        <Persons persons={this.state.persons}/>
-
+    return (
+      <div>
+        Class component
+        <Persons persons={this.state.persons} />
       </div>
-    )
+    );
   }
 }
 
