@@ -77,7 +77,7 @@ const app = (props) => {
 
   return (
     <div className={classes.App}>
-      <Cockpit onToggle={togglePersonsHandler} persons={personsState.persons} />
+      <Cockpit title={props.appTitle}onToggle={togglePersonsHandler} persons={personsState.persons} />
       {persons}
     </div>
   );
