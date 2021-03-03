@@ -110,15 +110,18 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
   //unsafe legacy lifecycle hook, will be removed
-  componentWillMount() {
-    console.log('[App.js] componentWillMount'); 
-  }
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount'); 
+  // }
 
   render() {
     console.log('[App.js] render() method');
 
     return(
-      <div>Class component</div>
+      <div>Class component
+        <Persons persons={this.state.persons}/>
+
+      </div>
     )
   }
 }
