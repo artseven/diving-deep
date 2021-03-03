@@ -128,7 +128,7 @@ class App extends Component {
     return (
       <div>
         Class component
-        <Persons persons={this.state.persons} />
+        <Cockpit persons={this.state.persons} />
       </div>
     );
   }
