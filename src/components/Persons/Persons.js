@@ -19,6 +19,5 @@ class Persons extends Component {
     });
   }
 }
-// const persons = (props) => props.persons.map((person, index) => {});
 
 export default Persons;
