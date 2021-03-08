@@ -137,7 +137,11 @@ class App extends Component {
         </button>
         Class component
         {this.state.showCockpit ? (
-          <Cockpit persons={this.state.persons} />
+          <Cockpit
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            title={this.props.appTitle}
+          />
         ) : null}
       </div>
     );
