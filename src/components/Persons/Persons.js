@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import Person from "./Person/Person";
 
-class Persons extends Component {
+class Persons extends PureComponent {
   // static getDerivedStateFromProps(props, state) {
   //   console.log('[Persons.js] getDerivedStateFromProps');
   //   return state;
