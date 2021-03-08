@@ -98,6 +98,7 @@ class App extends Component {
       persons: [],
       otherState: "blah",
       showPersons: false,
+      showCockpit: true,
     };
   }
 
@@ -126,9 +127,18 @@ class App extends Component {
     console.log("[App.js] render() method");
 
     return (
-      <div>
+      <div className={classes.App}>
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}
+        >
+          Remove Cockpit
+        </button>
         Class component
-        <Cockpit persons={this.state.persons} />
+        {this.state.showCockpit ? (
+          <Cockpit persons={this.state.persons} />
+        ) : null}
       </div>
     );
   }
