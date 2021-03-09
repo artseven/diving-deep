@@ -96,13 +96,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     console.log("[App.js] constructor");
-    this.state = {
-      persons: [],
-      otherState: "blah",
-      showPersons: false,
-      showCockpit: true,
-    };
   }
+  
+  state = {
+    persons: [
+      { id: "asfd12", name: "Max", age: '28' },
+      { id: "sdfgsdf", name: "Manu", age: 29 },
+      { id: "sdfsdfa12", name: "Stephanie", age: 26 },
+    ],
+    otherState: "blah",
+    showPersons: false,
+    showCockpit: true,
+    changeCounter: 0
+  };
 
   static getDerivedStateFromProps(props, state) {
     console.log("[App.js] getDerivedStateFromProps", props);
