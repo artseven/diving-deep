@@ -3,8 +3,9 @@ import classes from "./App.css";
 
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
-import withClass from '../hoc/withClass'
-import Aux from '../hoc/Auxiliary'
+import withClass from "../hoc/withClass";
+import Aux from "../hoc/Auxiliary";
+import AuthContext from '../context/auth-context'
 
 // const app = (props) => {
 //   const [personsState, setPersonsState] = useState({
@@ -97,17 +98,18 @@ class App extends Component {
     super(props);
     console.log("[App.js] constructor");
   }
-  
+
   state = {
     persons: [
-      { id: "asfd12", name: "Max", age: '28' },
+      { id: "asfd12", name: "Max", age: "28" },
       { id: "sdfgsdf", name: "Manu", age: 29 },
       { id: "sdfsdfa12", name: "Stephanie", age: 26 },
     ],
     otherState: "blah",
     showPersons: false,
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -131,9 +133,27 @@ class App extends Component {
   componentDidUpdate() {
     console.log("[App.js] componentDidUpdate");
   }
+
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow });
+  };
+
+  loginHandler = () => {
+    this.setState({ authenticated: true });
+  };
+
   render() {
     console.log("[App.js] render() method");
-
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <Persons 
+          persons={this.state.persons}
+          isAuthenticated={this.state.authenticated}
+        />
+      )
+    }
     return (
       <Aux>
         <button
@@ -146,11 +166,14 @@ class App extends Component {
         Class component
         {this.state.showCockpit ? (
           <Cockpit
+            title={this.props.appTitle}
             showPersons={this.state.showPersons}
             personsLength={this.state.persons.length}
-            title={this.props.appTitle}
+            onToggle={this.togglePersonsHandler}
+            login={this.loginHandler}
           />
         ) : null}
+        {persons}
       </Aux>
     );
   }
