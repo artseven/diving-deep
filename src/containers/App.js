@@ -5,7 +5,7 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import withClass from "../hoc/withClass";
 import Aux from "../hoc/Auxiliary";
-import AuthContext from '../context/auth-context'
+import AuthContext from "../context/auth-context";
 
 // const app = (props) => {
 //   const [personsState, setPersonsState] = useState({
@@ -101,7 +101,7 @@ class App extends Component {
 
   state = {
     persons: [
-      { id: "asfd12", name: "Max", age: "28" },
+      { id: "asfd12", name: "Max", age: 28 },
       { id: "sdfgsdf", name: "Manu", age: 29 },
       { id: "sdfsdfa12", name: "Stephanie", age: 26 },
     ],
@@ -120,10 +120,6 @@ class App extends Component {
   componentDidMount() {
     console.log("[App.js] componentDidMount");
   }
-  //unsafe legacy lifecycle hook, will be removed
-  // componentWillMount() {
-  //   console.log('[App.js] componentWillMount');
-  // }
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[App.js] shouldComponentUpdate");
@@ -148,11 +144,11 @@ class App extends Component {
     let persons = null;
     if (this.state.showPersons) {
       persons = (
-        <Persons 
+        <Persons
           persons={this.state.persons}
           isAuthenticated={this.state.authenticated}
         />
-      )
+      );
     }
     return (
       <Aux>
@@ -163,17 +159,24 @@ class App extends Component {
         >
           Remove Cockpit
         </button>
-        Class component
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            showPersons={this.state.showPersons}
-            personsLength={this.state.persons.length}
-            onToggle={this.togglePersonsHandler}
-            login={this.loginHandler}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler,
+          }}
+        >
+          Class component
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.appTitle}
+              showPersons={this.state.showPersons}
+              personsLength={this.state.persons.length}
+              onToggle={this.togglePersonsHandler}
+              login={this.loginHandler}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }
