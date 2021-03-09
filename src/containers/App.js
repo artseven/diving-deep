@@ -3,6 +3,8 @@ import classes from "./App.css";
 
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import withClass from '../hoc/withClass'
+import Aux from '../hoc/Auxiliary'
 
 // const app = (props) => {
 //   const [personsState, setPersonsState] = useState({
@@ -127,7 +129,7 @@ class App extends Component {
     console.log("[App.js] render() method");
 
     return (
-      <div className={classes.App}>
+      <Aux>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -143,9 +145,9 @@ class App extends Component {
             title={this.props.appTitle}
           />
         ) : null}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
