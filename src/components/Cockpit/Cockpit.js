@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
+import AuthContext from "../../context/auth-context";
+
 import classes from "./Cockpit.css";
 
 const cockpit = (props) => {
@@ -13,16 +15,16 @@ const cockpit = (props) => {
     // }, 1000)
     toggleBtnRef.current.click();
     return () => {
-      console.log('[Cockpit.js] cleanup work in useEffect');
-    }
-  }, [props.persons]);//changes to which properties we watch to trigger useEffect
+      console.log("[Cockpit.js] cleanup work in useEffect");
+    };
+  }, [props.persons]); //changes to which properties we watch to trigger useEffect
 
   useEffect(() => {
-    console.log('[Cockpit.js] 2nd useEffect');
+    console.log("[Cockpit.js] 2nd useEffect");
     return () => {
-      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
-    }
-  })
+      console.log("[Cockpit.js] cleanup work in 2nd useEffect");
+    };
+  });
   const assignedClasses = [];
 
   let btnClass = "";
@@ -43,7 +45,9 @@ const cockpit = (props) => {
       <button ref={toggleBtnRef} className={btnClass} onClick={props.onToggle}>
         Toggle Persons
       </button>
-      <button onClick={props.login}>Log in</button>
+      {/* <AuthContext.Consumer>
+        {(context) => <button onClick={context.login}>Log in</button>};
+      </AuthContext.Consumer> */}
     </div>
   );
 };
